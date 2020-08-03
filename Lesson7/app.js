@@ -21,7 +21,7 @@ function create(){
     platforms.enableBody = true;
     //ground
     var ground = platforms.create(0, 550, 'ground');
-    ground.scale,setTo(2, 2);
+    ground.scale.setTo(2, 2);
     ground.body.immovable = true;
     //Legdes
     var ledge = platforms.create(400, 400, 'ground');
