@@ -18,7 +18,7 @@ function create(){
 	game.add.sprite(0, 0, 'sky');
 	//platforms
     platforms = game.add.physicsGroup();
-    platforma.enableBody = true;
+    platforms.enableBody = true;
     //ground
     var ground = platforms.create(0, 550, 'ground');
     ground.scale,setTo(2, 2);
@@ -26,7 +26,7 @@ function create(){
     //Legdes
     var ledge = platforms.create(400, 400, 'ground');
     ledge.body.immovable = true;
-    ledge = platform.create(-100, 200, 'ground');
+    ledge = platforms.create(-100, 200, 'ground');
     ledge.body.immovable = true;
 
     //set text style
