@@ -100,7 +100,7 @@ function update(){
     	player.frame = 4;
     }
 
-    if(cursors.up.isDown && player.body.touch.down){
+    if(cursors.up.isDown && player.body.touching.down){
         player.body.velocity.y = -300;
 
     }
