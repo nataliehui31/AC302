@@ -44,9 +44,65 @@ function create(){
     lifelabel.setShadow(3,3,'rgba(0,0,0,0.5)', 2);
     lifetext.setShadow(3,3,'rgba(0,0,0,0.5)', 2);
     
+    //create the player sprite
+    player = game.add.sprite(32, 400, 'dude')
+    //Animations for player
+    player.animations.add('left', [0, 1, 2, 3], 10, true);
+    player.animations.add('right', [5, 6, 7, 8], 10, true);
+    game.physics.arcade.enable(player)
+    player.body.bounce.y = 0.2;
+    player.body.gravity.y = 300;
+    player.body.collideWorldBounds = true;
 
+    //creatwe enemy
+    enemy1 = game.add.sprite(760, 20, 'baddie');
+    //animations for enemy
+    enemy1.animations.add('left', [0, 1], 10, true);
+    enemy1.animations.add('right', [2, 3], 10, true);
+    game.physics.arcade.enable(enemy1);
+    enemy1.body.bounce.y = 0.2
+    enemy1.body.gravity.y = 500;
+    enemy1.body.collideWorldBounds = true;
+
+    //create the stars
+    stars = game.add.physicsGroup();
+    stars.enableBody = true;
+    //create 12 evenly space stars
+    for (var i = 0; i < 12; i++) {
+    	var star = stars.create(i * 70, 0, 'star');
+    	star.body.gravity.y = 200;
+    	star.body.bounce.y = 0.7 + Math.random() * 0.2
+    }
+
+    //create keyboard entries
+    cursors = game.input.keyboard.createCursorKeys();
 }
 
 function update(){
-	
+	game.physics.arcade.collide(player, platforms);
+	game.physics.arcade.collide(stars, platforms);
+	game.physics.arcade.collide(enemy1, platforms);
+
+    //reset the player's velocity if nothing happens
+    player.body.velocity.x = 0;
+
+    //player movement by keys
+    if(cursors.left.isDown){
+    	//moveleft
+    	player.body.velocity.x = -150;
+    	player.animations.play('left');
+    } else if (cursors.right.isDown){
+    	//Move right
+    	player.body.velocity.x = 150;
+    	player.animations.play('right');
+    } else {
+    	player.animations.stop();
+    	player.frame = 4;
+    }
+
+    if(cursors.up.isDown && player.body.touch.down){
+        player.body.velocity.y = -300;
+
+    }
+
 }
