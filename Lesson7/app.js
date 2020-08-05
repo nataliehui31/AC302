@@ -64,6 +64,16 @@ function create(){
     enemy1.body.gravity.y = 500;
     enemy1.body.collideWorldBounds = true;
 
+    //create second enemy
+    enemy2 = game.add.sprite(10, 20, 'baddie');
+    //animate enemy2
+    enemy2.animations.add('left', [0, 1], 10, true);
+    enemy2.animations.add('right', [2, 3], 10, true);
+    game.physics.arcade.enable(enemy2);
+    enemy2.body.bounce.y = 0,2;
+    enemy2.body.gravity.y = 500;
+    enemy2.body.collideWorldBounds = true;
+
     //create the stars
     stars = game.add.physicsGroup();
     stars.enableBody = true;
@@ -82,6 +92,7 @@ function update(){
 	game.physics.arcade.collide(player, platforms);
 	game.physics.arcade.collide(stars, platforms);
 	game.physics.arcade.collide(enemy1, platforms);
+	game.physics.arcade.collide(enemy2, platforms);
 
     //reset the player's velocity if nothing happens
     player.body.velocity.x = 0;
@@ -105,6 +116,7 @@ function update(){
       }
       game.physics.arcade.overlap(player, stars, collectStar);
       game.physics.arcade.overlap(player, enemy1, loseLife);
+      game.physics.arcade.overlap(player, enemy2, loseLife);
 
       moveEnemy();
 
@@ -142,6 +154,15 @@ function moveEnemy(){
 	}else if (enemy1.x < 405){
 		enemy1.animations.play('right');
 		enemy1.body.velocity.x=120;
+	}
+
+	//enemy2 ai
+	if(enemy2.x > 200){
+		enemy2.animations.play('left');
+		enemy2.body.velocity.x = -120;
+	}else if(enemy2.x < 21){
+		enemy2.animations.play('right');
+		enemy2.body.velocity.x = 120;
 	}
 }
 
