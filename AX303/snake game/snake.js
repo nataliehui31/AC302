@@ -27,7 +27,7 @@ $(document).ready(function(){
     var snakeBody = [[7, 7]];
 
     //setting up keys
-    var keyPresed = null;
+    var keyPressed = null;
     var leftKey = 37, upKey = 38, rightKey = 39, downKey = 40;
 
     //custom insert() for array
