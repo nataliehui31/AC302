@@ -16,7 +16,7 @@ $(document).ready(function(){
 
     var player = {
     	x: 7,
-    	y: 7.
+    	y: 7,
     	// direction: Right - 0, Left - 1, Up - 2, Down - 3, Stopped -5
     	direction: 5,
     	alive: true,
