@@ -73,7 +73,7 @@ $(document).ready(function(){
     	}
 
     	///check if player eats itself
-    	if(play.tail > 1){
+    	if(player.tail > 1){
     		for(var i = 1; i < player.tail; i++){
     			if(player.x == snakeBody[i][0] && player.y == snakeBody[i][1]){
     				player.alive = false;
