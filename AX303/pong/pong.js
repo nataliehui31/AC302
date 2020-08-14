@@ -1,4 +1,4 @@
-&(document).ready(function(){
+$(document).ready(function(){
     //setting up the game
     var canvas = document.getElementById('canvas');
     var ctx = canvas.getContext("2d");
